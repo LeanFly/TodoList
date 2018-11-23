@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>计算属性和侦听器</title>
+	<script src="./vue.js"></script>
+</head>
+<body>
+	<div id="vue-one">
+		姓：<input v-model="firstname">
+		名：<input v-model="lastname">
+		<div>{{fullname}}</div>
+		<div>{{count}}</div>
+	</div>
+	<div id="vue-two">
+		性别：<input type="" name="" v-model="male">
+	</div>
+
+	<script>
+
+	var one=new Vue({
+		el:"#vue-one",
+		data:{
+			firstname:"",
+			lastname:"",
+			count:0
+
+		},
+		computed:{
+			fullname:function(){
+				return this.firstname+" "+this.lastname
+			}
+		},
+		watch:{
+			fullname:function(){
+				this.count ++
+			},
+
+		}
+	})
+
+	var two=new Vue({
+		el:"#vue-two",
+		data:{
+			male:""
+		}
+	})
+	</script>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>		
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Vue 入门</title>
+	<script src="./vue.js"></script>
+
+</head>
+<body>
+	<div id="root">
+		<h1 v-bind:title="title" v-on:click="handleClick">{{num1}}</h1>
+		<input v-model="content" style="width: 300px" />
+		<div>{{content}}</div>
+		<!--v-model:,可以实现属性双向绑定-->
+	</div>
+	<!--v-on:可以用@来代替，变成@click，这样更简便-->
+	<!--v-bind:可以用:来代替，变成:title，这样更简便-->
+	<script>
+
+		new Vue({
+			el:"#root",
+			data:{
+				  num1:"good luck",
+				  title:"this is a title.",
+				  content:"this is content.双向绑定1",
+				},
+		methods:{
+			handleClick:function(){
+				this.num1="go to hell"
+			}
+		}
+		})
+	</script>
+
+</body>
+</html>

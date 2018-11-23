@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>v-if/v-show/v-for指令</title>
+	<script src="./vue.js"></script>
+	<style type="text/css">
+		body {margin: 50px 400px;}
+		div {margin: 20px;}
+		ul {margin: 20px;}
+		button {margin: 0px 30px;}
+	</style>
+</head>
+<body>
+	<div id="vue-one">
+		<div v-if="show">v-if指令</div></br>
+		<button @click="handleClick">toggle-if</button></br><hr>
+		<!--v-if指令是让内容从DOM中删除、添加重复-->
+		<div v-show="show1">v-show指令</div></br>
+		<button @click="handleClick1">toggle-show</button></br><hr>
+		<!--v-show是让内容显示、隐藏重复-->
+		<div>v-for指令</div>
+		<ul>
+			<li v-for="(item, index) of list" :key="index">{{item}}</li>
+		</ul>
+		<!--v-for用来控制页面数据的循环展示;v-for后面加:key属性可提高渲染效率，key值每一项都要求不同-->
+	<script>
+	 var one=new Vue({
+	 	el:"#vue-one",
+	 	data: {
+	 		show: true,
+	 		show1: true,
+	 		list: [1,2,2,3,1]
+	 	},
+	 	methods: {
+	 		handleClick: function(){
+	 			this.show= !this.show;
+	 		},
+	 		handleClick1: function(){
+	 			this.show1= !this.show1;
+	 		}
+	 	}
+	 })
+	</script>
+</body>
+</html>

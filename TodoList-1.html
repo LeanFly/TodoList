@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>TodoList复习</title>
+	<script src="./vue.js"></script>
+</head>
+<body>
+<div id="vue-one">
+	<h3>Moontour任务列表：</h3>
+	<input v-model="moontour">
+	<button @click="handlesubmit">提交</button>
+	<ul>
+		<li v-for="(item, index) of list" :key="index">{{item}}</li>
+	</ul>
+</div>
+<div id="vue-two">
+	<h3>Toutiaoapp任务列表：</h3>
+	<input v-model="toutiaoapp">
+	<button @click="handlesubmit1">提交</button>
+	<ul>
+		<li v-for="(item, index) of list" :key="index">{{item}}</li>
+	</ul>
+</div>
+<script >
+	var one=new Vue({
+		el: "#vue-one",
+		data: {
+			moontour: "",
+			list: []
+		},
+		methods: {
+			handlesubmit: function(){
+				this.list.push(this.moontour)
+				this.moontour=""
+			}
+		}
+	})
+	var one=new Vue({
+		el: "#vue-two",
+		data: {
+			toutiaoapp: "",
+			list: []
+		},
+		methods: {
+			handlesubmit1: function(){
+				this.list.push(this.toutiaoapp)
+				this.toutiaoapp=""
+			}
+		}
+	})
+</script>
+</body>
+</html>

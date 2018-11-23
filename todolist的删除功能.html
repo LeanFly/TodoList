@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>todolist的删除功能</title>
+	<script src="./vue.js"></script>
+</head>
+<body>
+<div id="vue-one">
+	<h5>todlist的删除功能</h5>
+	<input v-model="todolist" @keyup.enter="handlesubmit">
+	<button @click="handlesubmit">submit</button>
+	<ul>
+		<todoitem
+		v-for="(item, index) of list"
+		:key= "index"
+		:content= "item"
+		:index= "index"
+		@delete= "handledelete"
+
+		>
+			<!--父组件监听子组件的事件delete
+				@keyup.enter调用键盘enter健提交内容
+			-->
+		</todoitem>
+	</ul>
+</div>
+<script>
+	Vue.component("todoitem", {
+		props: ["content", "index"],
+		template: "<li @click='handleclick'>{{content}}</li>",
+		methods: {
+			handleclick: function() {
+				this.$emit("delete", this.index)
+				//这里的delete为自定义事件。$emit为向父组件发布信息
+			}
+		}
+	})
+	var one=new Vue({
+		el: "#vue-one",
+		data: {
+			todolist: "",
+			list: []
+		},
+		methods: {
+			handlesubmit: function() {
+				this.list.push(this.todolist)
+				this.todolist= ""
+			},
+			handledelete: function(index) {
+				this.list.splice(index, 1)
+		
+			}
+		}
+	})
+</script>
+</body>
+</html>

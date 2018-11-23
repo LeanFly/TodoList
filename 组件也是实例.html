@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>组件也是实例</title>
+	<script src="./vue.js"></script>
+</head>
+<body>
+<div id="vue-one">
+	<h5 style="color: pink;font: italic;">组件也是实例</h5>
+	<input v-model="tl">
+	<button @click="handleclick">Submit</button>
+	<ul>
+		<todoitem v-for="(item, index) of list"
+				  :key="index"
+				  :content="item"
+		>		
+		</todoitem>
+	</ul>
+	<p>每一个组件都是vue的实例，每一个vue的实例也是vue的组件</p>
+</div>
+<script>
+	Vue.component("todoitem", {
+		props: ["content"],
+		template: "<li @click='showclick'>{{content}}</li>",
+		methods: {
+			showclick: function() {
+				alert("已点击")
+			}
+		}
+//双引号里面用单引号
+	})
+	var one=new Vue({
+		el: "#vue-one",
+		data: {
+			tl: "",
+			list: []
+		},
+		methods: {
+			handleclick: function(){
+				this.list.push(this.tl)
+			this.tl= ""
+			}	
+		}
+	})
+</script>
+</body>
+</html>
